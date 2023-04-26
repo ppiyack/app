@@ -3,7 +3,10 @@
 import * as React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  NativeStackScreenProps,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
 
 function DetailsScreen() {
   return (
@@ -21,9 +24,16 @@ const DeetailsScreenStyles = StyleSheet.create({
   },
 });
 
-interface IHomeScreen {
-  navigation: unknown;
-}
+type RootStackParamList = {
+  Home: undefined;
+  Details: undefined;
+};
+
+type IHomeScreen = NativeStackScreenProps<
+  RootStackParamList,
+  'Home',
+  'Details'
+>;
 
 function HomeScreen({navigation}: IHomeScreen) {
   return (
@@ -45,7 +55,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
@@ -56,6 +66,7 @@ function App() {
           component={HomeScreen}
           options={{title: 'Header Title'}}
         />
+
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
