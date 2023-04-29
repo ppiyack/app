@@ -1,23 +1,23 @@
 // In App.js in a new project
+import React from 'react';
 
-import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from './screens/HomeScreen';
+
 import {RootStackParamList} from './screens/types';
 import {DetailsScreen} from './screens/DetailScreen';
-import {RootStack} from './navigators/RootStack';
+
+import {TabNavigator} from './navigators/TabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
     <NavigationContainer>
-      <RootStack />
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+          name="TabNavigator"
+          component={TabNavigator}
           options={{title: 'Header Title'}}
         />
 

@@ -3,23 +3,20 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {StyleSheet} from 'react-native/types';
-import {FeedScreen} from '../screens/FeedScreen';
+
 import {NotificationsScreen} from '../screens/NotificationsScreen';
 import {ProfileScreen} from '../screens/ProfileScreen';
 import {RootStackParamList} from '../screens/types';
+import {HomeScreen} from '../screens/HomeScreen';
 
 const Tab = createMaterialBottomTabNavigator<RootStackParamList>();
 
-export function MyTabs() {
+export function TabNavigator() {
   return (
-    <Tab.Navigator
-      initialRouteName="Feed"
-      activeColor="#e91e63"
-      barStyle={Styles.bar}>
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
-        name="Feed"
-        component={FeedScreen}
+        name="Home"
+        component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
@@ -27,16 +24,19 @@ export function MyTabs() {
           ),
         }}
       />
+
       <Tab.Screen
         name="Notifications"
         component={NotificationsScreen}
         options={{
-          tabBarLabel: 'Updates',
+          title: '알림',
+          tabBarLabel: 'Notifications',
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="bell" color={color} size={26} />
           ),
         }}
       />
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -50,9 +50,3 @@ export function MyTabs() {
     </Tab.Navigator>
   );
 }
-
-const Styles = StyleSheet.create({
-  bar: {
-    backgroundColor: 'tomato',
-  },
-});

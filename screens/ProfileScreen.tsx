@@ -12,7 +12,7 @@ type IProfileScreen = MaterialBottomTabScreenProps<
 export function ProfileScreen({navigation}: IProfileScreen) {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Profile Screen</Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}

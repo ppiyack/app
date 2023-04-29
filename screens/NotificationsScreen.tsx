@@ -12,7 +12,7 @@ type INotificationsScreen = MaterialBottomTabScreenProps<
 export function NotificationsScreen({navigation}: INotificationsScreen) {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Notifications Screen</Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}

@@ -1,4 +1,5 @@
 export type RootStackParamList = {
+  TabNavigator: undefined;
   Home: undefined;
   Feed: undefined;
   Profile: undefined;

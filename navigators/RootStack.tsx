@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text} from 'react-native';
+
+import {TabNavigator} from './TabNavigator';
 
 export function RootStack() {
-  return <Text>RootStack</Text>;
+  return <TabNavigator />;
 }
