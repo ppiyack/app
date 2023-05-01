@@ -14,14 +14,24 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerBackTitleVisible: true,
+        }}>
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
-          options={{title: 'Header Title'}}
+          options={{
+            headerShown: false,
+          }}
         />
 
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={{title: '상세 정보', headerBackTitle: ''}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

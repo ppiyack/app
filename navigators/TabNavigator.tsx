@@ -18,7 +18,7 @@ export function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: '홈',
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
@@ -29,8 +29,7 @@ export function TabNavigator() {
         name="Notifications"
         component={NotificationsScreen}
         options={{
-          title: '알림',
-          tabBarLabel: 'Notifications',
+          tabBarLabel: '알림',
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="bell" color={color} size={26} />
           ),
@@ -41,7 +40,7 @@ export function TabNavigator() {
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: '설정',
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
