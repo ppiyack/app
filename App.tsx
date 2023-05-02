@@ -8,17 +8,14 @@ import {RootStackParamList} from './screens/types';
 import {DetailsScreen} from './screens/DetailScreen';
 
 import {TabNavigator} from './navigators/TabNavigator';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerBackTitleVisible: true,
-        }}>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
@@ -27,10 +24,12 @@ function App() {
           }}
         />
 
+        <Stack.Screen name="Login" component={LoginScreen} />
+
         <Stack.Screen
           name="Details"
           component={DetailsScreen}
-          options={{title: '상세 정보', headerBackTitle: ''}}
+          options={{headerTitle: '상세 정보'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

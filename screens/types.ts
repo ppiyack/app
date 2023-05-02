@@ -5,4 +5,5 @@ export type RootStackParamList = {
   Notifications: undefined;
   Feed: undefined;
   Details: undefined;
+  Login: undefined;
 };
