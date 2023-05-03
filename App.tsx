@@ -9,30 +9,33 @@ import {DetailsScreen} from './screens/DetailScreen';
 
 import {TabNavigator} from './navigators/TabNavigator';
 import LoginScreen from './screens/LoginScreen';
+import {UserContextProvider} from './contexts/UserContext';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="TabNavigator"
-          component={TabNavigator}
-          options={{
-            headerShown: false,
-          }}
-        />
+    <UserContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="TabNavigator"
+            component={TabNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
 
-        <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
-          options={{headerTitle: '상세 정보'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          <Stack.Screen
+            name="Details"
+            component={DetailsScreen}
+            options={{headerTitle: '상세 정보'}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserContextProvider>
   );
 }
 
