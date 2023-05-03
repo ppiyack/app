@@ -3,5 +3,6 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     'react/no-unstable-nested-components': 'off',
+    '@typescript-eslint/no-shadow': 'off',
   },
 };
