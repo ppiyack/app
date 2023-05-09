@@ -19,7 +19,7 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
-            name="TabNavigator"
+            name="Home"
             component={TabNavigator}
             options={{
               headerShown: false,

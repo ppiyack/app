@@ -6,10 +6,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import {NotificationsScreen} from '../screens/NotificationsScreen';
 import {ProfileScreen} from '../screens/ProfileScreen';
-import {RootStackParamList} from '../screens/types';
-import {HomeScreen} from '../screens/HomeScreen';
 
-const Tab = createMaterialBottomTabNavigator<RootStackParamList>();
+import {HomeScreen} from '../screens/HomeScreen';
+import {TabNavigatorParamList} from '../screens/types';
+
+const Tab = createMaterialBottomTabNavigator<TabNavigatorParamList>();
 
 export function TabNavigator() {
   return (

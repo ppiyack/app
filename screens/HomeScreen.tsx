@@ -1,13 +1,24 @@
 import React from 'react';
 
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from './types';
+import {
+  RootStackParamList,
+  RootStackScreenProps,
+  TabNavigatorParamList,
+} from './types';
 import {Button, ScrollView, StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {CompositeScreenProps} from '@react-navigation/native';
+import {MaterialBottomTabScreenProps} from '@react-navigation/material-bottom-tabs';
 
-type IHomeScreen = NativeStackScreenProps<RootStackParamList, 'Home'>;
+/**
+ * 네비게이터 불편하다.
+ */
+type IHomeScreen<T extends keyof TabNavigatorParamList> = CompositeScreenProps<
+  MaterialBottomTabScreenProps<TabNavigatorParamList, T>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
 
-export function HomeScreen({navigation}: IHomeScreen) {
+export function HomeScreen({navigation}: IHomeScreen<'Home'>) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
