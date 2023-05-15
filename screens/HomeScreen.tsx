@@ -5,7 +5,7 @@ import {
   RootStackScreenProps,
   TabNavigatorParamList,
 } from './types';
-import {Button, ScrollView, StyleSheet, Text} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {CompositeScreenProps} from '@react-navigation/native';
 import {MaterialBottomTabScreenProps} from '@react-navigation/material-bottom-tabs';
@@ -18,28 +18,108 @@ type IHomeScreen<T extends keyof TabNavigatorParamList> = CompositeScreenProps<
   RootStackScreenProps<keyof RootStackParamList>
 >;
 
-export function HomeScreen({navigation}: IHomeScreen<'Home'>) {
+export function HomeScreen(props: IHomeScreen<'Home'>) {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
-        />
+    <SafeAreaView style={Styles.container}>
+      <ScrollView style={Styles.inner}>
+        <View style={[Styles.section, Skins.dark]}>
+          <Text style={[TextColors.white, HeadSize.h2]}>
+            더이상 성과 기록에
+          </Text>
+          <Text style={[TextColors.white, HeadSize.h2]}>부담갖지 마세요</Text>
+
+          <Text style={[Styles.subCopy, TextColors.white, HeadSize.h6]}>
+            삐약이 당신의 성과 관리를 쉽게 도와드릴게요 🐣
+          </Text>
+        </View>
+
+        <View style={[Styles.section, Skins.white]}>
+          <Text style={[TextColors.dark, HeadSize.h2]}>
+            당신의 소중한 경험을
+          </Text>
+          <Text style={[TextColors.dark, HeadSize.h2]}>더 멋지게 표현해요</Text>
+
+          <Text style={[Styles.subCopy, TextColors.dark, HeadSize.h6]}>
+            1분만에 당신을 빛나게 할 성과 지표를 만들어보세요.
+          </Text>
+        </View>
+
+        <View style={[Styles.section, Skins.dark]}>
+          <Text style={[TextColors.white, HeadSize.h2]}>
+            만들기가 어려우신가요?
+          </Text>
+          <Text style={[TextColors.white, HeadSize.h2]}>
+            다른 사람들과 비교해요
+          </Text>
+
+          <Text style={[Styles.subCopy, TextColors.white, HeadSize.h6]}>
+            다른 친구들과 성과 관리 팁을 공유하며
+          </Text>
+          <Text style={[TextColors.white, HeadSize.h6]}>
+            다른 사람들보다 더 앞서나가요 🙆🏻‍♀️🙆🏻
+          </Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scrollView: {
+  inner: {
     width: '100%',
-    // flex: 1,
+  },
+  section: {
+    height: 500,
+    padding: 20,
+  },
+  subCopy: {
+    marginTop: 20,
+    lineHeight: 30,
+  },
+});
+
+const HeadSize = StyleSheet.create({
+  h1: {
+    fontSize: 40,
+    fontWeight: '900',
+  },
+  h2: {
+    fontSize: 32,
+    fontWeight: '900',
+  },
+  h3: {
+    fontSize: 28,
+  },
+  h4: {
+    fontSize: 24,
+  },
+  h5: {
+    fontSize: 20,
+  },
+  h6: {
+    fontSize: 16,
+  },
+});
+
+const Skins = StyleSheet.create({
+  dark: {
+    backgroundColor: '#111',
+  },
+  white: {
+    backgroundColor: '#fff',
+  },
+});
+
+const TextColors = StyleSheet.create({
+  dark: {
+    color: '#111',
+  },
+  white: {
+    color: '#fff',
   },
 });
