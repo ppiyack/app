@@ -1,8 +1,10 @@
 import React, {PropsWithChildren, createContext, useContext} from 'react';
 import {EButtonDI} from '../components/Button/Button.types';
+import {ESpinnerDI} from '../components/Spinner/Spinner.types';
 
 const componentsDI = {
   button: EButtonDI.pressable,
+  spinner: ESpinnerDI.activityIndicator,
 };
 
 const initialState = {
