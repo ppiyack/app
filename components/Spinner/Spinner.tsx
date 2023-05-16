@@ -1,7 +1,8 @@
 import React from 'react';
-import {useDIContext} from '../../contexts/DIContext';
-import {BaseSpinnerProps, ESpinnerDI} from './Spinner.types';
+import {useDIContext} from '@/contexts/DIContext';
+import {BaseSpinnerProps} from './Spinner.types';
 import {ActivityIndicator} from 'react-native-paper';
+import {ESpinnerDI} from '@/models/di';
 
 export default function BaseSpinner({size}: BaseSpinnerProps) {
   const DIContext = useDIContext();

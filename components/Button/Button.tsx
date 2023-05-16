@@ -1,9 +1,10 @@
 import React from 'react';
 import {Pressable, TouchableOpacity} from 'react-native';
 
-import {getComponentStyle} from '../../utils/style/getComponentStyle';
-import {EButtonDI, TButtonProps} from './Button.types';
-import {useDIContext} from '../../contexts/DIContext';
+import {getComponentStyle} from '@/utils/style/getComponentStyle';
+import {TButtonProps} from './Button.types';
+import {useDIContext} from '@/contexts/DIContext';
+import {EButtonDI} from '@/models/di';
 
 /**
  * INFO: 추후 버튼에 대한 스펙이 바뀌면 유연하게 변경할 수 있도록 한다.
