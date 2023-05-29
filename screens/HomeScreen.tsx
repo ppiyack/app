@@ -5,6 +5,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootStackParamList} from './types';
+import {HeadSize, Skins, TextColors} from '@/utils/theme';
 
 // type IHomeScreen<T extends keyof TabNavigatorParamList> = CompositeScreenProps<
 //   MaterialBottomTabScreenProps<TabNavigatorParamList, T>,
@@ -30,10 +31,10 @@ export function HomeScreen() {
             삐약이 당신의 성과 관리를 쉽게 도와드릴게요 🐣
           </Text>
 
-          <BaseButton onPress={onPressStart} style={Styles.button}>
-            <Text style={[Styles.subCopy, TextColors.white, HeadSize.h6]}>
-              시작하기
-            </Text>
+          <BaseButton
+            onPress={onPressStart}
+            style={[Styles.button, Skins.primary]}>
+            <Text style={[TextColors.white, HeadSize.h6]}>시작하기</Text>
           </BaseButton>
         </View>
 
@@ -87,49 +88,12 @@ const Styles = StyleSheet.create({
   },
 
   button: {
-    width: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    width: 120,
     height: 40,
     borderRadius: 20,
-  },
-});
-
-const HeadSize = StyleSheet.create({
-  h1: {
-    fontSize: 40,
-    fontWeight: '900',
-  },
-  h2: {
-    fontSize: 32,
-    fontWeight: '900',
-  },
-  h3: {
-    fontSize: 28,
-  },
-  h4: {
-    fontSize: 24,
-  },
-  h5: {
-    fontSize: 20,
-  },
-  h6: {
-    fontSize: 16,
-  },
-});
-
-const Skins = StyleSheet.create({
-  dark: {
-    backgroundColor: '#111',
-  },
-  white: {
-    backgroundColor: '#fff',
-  },
-});
-
-const TextColors = StyleSheet.create({
-  dark: {
-    color: '#111',
-  },
-  white: {
-    color: '#fff',
   },
 });
