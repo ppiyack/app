@@ -17,7 +17,7 @@ export default function BaseButton({children, onPress, style}: TButtonProps) {
       return (
         <BaseButton.TouchableOpacity
           onPress={onPress}
-          style={getComponentStyle(style)}>
+          style={getComponentStyle({button: style})}>
           {children}
         </BaseButton.TouchableOpacity>
       );
@@ -27,7 +27,7 @@ export default function BaseButton({children, onPress, style}: TButtonProps) {
       return (
         <BaseButton.Pressable
           onPress={onPress}
-          style={getComponentStyle(style)}>
+          style={getComponentStyle({button: style})}>
           {children}
         </BaseButton.Pressable>
       );

@@ -11,6 +11,7 @@ import {TabNavigator} from './navigators/TabNavigator';
 import LoginScreen from './screens/LoginScreen';
 import {UserContextProvider} from './contexts/UserContext';
 import {DIContextProvider} from './contexts/DIContext';
+import {FeedScreen} from './screens/FeedScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,6 +30,12 @@ function App() {
             />
 
             <Stack.Screen name="Login" component={LoginScreen} />
+
+            <Stack.Screen
+              name="Feed"
+              component={FeedScreen}
+              options={{headerTitle: '게시판'}}
+            />
 
             <Stack.Screen
               name="Details"

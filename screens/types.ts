@@ -7,6 +7,7 @@ import {
 export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
+  Feed: undefined;
   Details: undefined;
 };
 

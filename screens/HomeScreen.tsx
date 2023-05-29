@@ -1,7 +1,10 @@
+import BaseButton from '@/components/Button/Button';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
 
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {RootStackParamList} from './types';
 
 // type IHomeScreen<T extends keyof TabNavigatorParamList> = CompositeScreenProps<
 //   MaterialBottomTabScreenProps<TabNavigatorParamList, T>,
@@ -9,6 +12,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 // >;
 
 export function HomeScreen() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const onPressStart = () => {
+    navigation.navigate('Feed');
+  };
   return (
     <SafeAreaView style={Styles.container}>
       <ScrollView style={Styles.inner}>
@@ -21,6 +29,12 @@ export function HomeScreen() {
           <Text style={[Styles.subCopy, TextColors.white, HeadSize.h6]}>
             삐약이 당신의 성과 관리를 쉽게 도와드릴게요 🐣
           </Text>
+
+          <BaseButton onPress={onPressStart} style={Styles.button}>
+            <Text style={[Styles.subCopy, TextColors.white, HeadSize.h6]}>
+              시작하기
+            </Text>
+          </BaseButton>
         </View>
 
         <View style={[Styles.section, Skins.white]}>
@@ -70,6 +84,12 @@ const Styles = StyleSheet.create({
   subCopy: {
     marginTop: 20,
     lineHeight: 30,
+  },
+
+  button: {
+    width: 50,
+    height: 40,
+    borderRadius: 20,
   },
 });
 
