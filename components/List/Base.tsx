@@ -10,7 +10,7 @@ interface IList<Data> {
   render: ListRenderItem<Data>;
 }
 
-export default function DefaultList<Data extends AnonymousObjectWithId>({
+export default function BaseList<Data extends AnonymousObjectWithId>({
   data,
   render,
 }: IList<Data>) {
