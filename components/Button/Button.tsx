@@ -1,7 +1,6 @@
 import React from 'react';
 import {Pressable, TouchableOpacity} from 'react-native';
 
-import {getComponentStyle} from '@/utils/style/getComponentStyle';
 import {TButtonProps} from './Button.types';
 import {useDIContext} from '@/contexts/DIContext';
 import {EButtonDI} from '@/models/di';
@@ -15,9 +14,7 @@ export default function BaseButton({children, onPress, style}: TButtonProps) {
   switch (DIContext.components.button) {
     case EButtonDI.touchableOpacity: {
       return (
-        <BaseButton.TouchableOpacity
-          onPress={onPress}
-          style={getComponentStyle({button: style})}>
+        <BaseButton.TouchableOpacity onPress={onPress} style={style}>
           {children}
         </BaseButton.TouchableOpacity>
       );
@@ -25,9 +22,7 @@ export default function BaseButton({children, onPress, style}: TButtonProps) {
 
     default: {
       return (
-        <BaseButton.Pressable
-          onPress={onPress}
-          style={getComponentStyle({button: style})}>
+        <BaseButton.Pressable onPress={onPress} style={style}>
           {children}
         </BaseButton.Pressable>
       );
