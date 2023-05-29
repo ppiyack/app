@@ -8,7 +8,9 @@ export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
   Feed: undefined;
-  Details: undefined;
+  Details: {
+    id: string;
+  };
 };
 
 export type RootStackNavigationProp =

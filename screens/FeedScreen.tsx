@@ -1,10 +1,12 @@
 import Card from '@/components/Item/Card';
 import BaseList from '@/components/List/Base';
 import {HeadSize, Skins, TextColors} from '@/utils/theme';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React from 'react';
 
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import uuid from 'react-native-uuid';
+import {RootStackParamList} from './types';
 
 const data = [
   {
@@ -50,6 +52,12 @@ const data = [
 ];
 
 export function FeedScreen() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const onCardPress = (id: string) => {
+    navigation.navigate('Details', {id});
+  };
+
   return (
     <SafeAreaView style={[Styles.container, Skins.dark]}>
       <Text style={[Styles.head, HeadSize.h4, TextColors.white]}>
@@ -64,6 +72,7 @@ export function FeedScreen() {
               style={Styles.card}
               title={item.title}
               description={item.description}
+              onPress={() => onCardPress(item.id)}
             />
           )}
         />

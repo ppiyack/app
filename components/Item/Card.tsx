@@ -1,20 +1,21 @@
 import {TComponentStyleObject} from '@/models/style/components';
 import {HeadSize, Skins, TextColors} from '@/utils/theme';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text} from 'react-native';
 
 interface ICard {
   title: string;
   description: string;
   style: TComponentStyleObject;
+  onPress: (e: Event) => void;
 }
 
-export default function Card({style, title, description}: ICard) {
+export default function Card({style, title, description, onPress}: ICard) {
   return (
-    <View style={[Styles.container, Skins.white, style]}>
+    <Pressable style={[Styles.container, Skins.white, style]} onPress={onPress}>
       <Text style={[Styles.title, HeadSize.h6, TextColors.dark]}>{title}</Text>
       <Text style={[Styles.title, TextColors.dark]}>{description}</Text>
-    </View>
+    </Pressable>
   );
 }
 
