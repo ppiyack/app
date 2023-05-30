@@ -2,11 +2,12 @@ import Card from '@/components/Item/Card';
 import BaseList from '@/components/List/Base';
 import {HeadSize, Skins, TextColors} from '@/utils/theme';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useState} from 'react';
 
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import uuid from 'react-native-uuid';
 import {RootStackParamList} from './types';
+import {Input} from '@/components/Input';
 
 const data = [
   {
@@ -54,8 +55,14 @@ const data = [
 export function FeedScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  const [inputValue, setInputValue] = useState('');
+
   const onCardPress = (id: string) => {
     navigation.navigate('Details', {id});
+  };
+
+  const onChange = (text: string) => {
+    setInputValue(text);
   };
 
   return (
@@ -65,6 +72,11 @@ export function FeedScreen() {
       </Text>
 
       <View style={Styles.feeds}>
+        <Input.Base
+          placeholder="성과 기록하기"
+          onChange={onChange}
+          value={inputValue}
+        />
         <BaseList
           data={data}
           render={({item}) => (

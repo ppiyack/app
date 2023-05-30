@@ -47,3 +47,22 @@ export const TextColors = StyleSheet.create({
     color: '#fff',
   },
 });
+
+export const BorderRadius = StyleSheet.create({
+  round: {
+    borderRadius: 20,
+  },
+  soft: {
+    borderRadius: 12,
+  },
+  hard: {
+    borderRadius: 6,
+  },
+});
+
+export const Borders = StyleSheet.create({
+  thin: {
+    borderWidth: 1,
+    borderColor: '#dddddd',
+  },
+});

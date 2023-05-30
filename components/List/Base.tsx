@@ -8,13 +8,20 @@ interface AnonymousObjectWithId {
 interface IList<Data> {
   data: ArrayLike<Data>;
   render: ListRenderItem<Data>;
+  onScrollEnd?: FlatList['props']['onEndReached'];
 }
 
 export default function BaseList<Data extends AnonymousObjectWithId>({
   data,
   render,
+  onScrollEnd,
 }: IList<Data>) {
   return (
-    <FlatList data={data} renderItem={render} keyExtractor={item => item.id} />
+    <FlatList
+      data={data}
+      renderItem={render}
+      keyExtractor={item => item.id}
+      onEndReached={onScrollEnd}
+    />
   );
 }
