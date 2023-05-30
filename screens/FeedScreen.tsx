@@ -1,6 +1,6 @@
 import Card from '@/components/Item/Card';
 import BaseList from '@/components/List/Base';
-import {HeadSize, Skins, TextColors} from '@/utils/theme';
+import {BorderRadius, Flex, HeadSize, Skins, TextColors} from '@/utils/theme';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 
@@ -8,6 +8,7 @@ import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import uuid from 'react-native-uuid';
 import {RootStackParamList} from './types';
 import {Input} from '@/components/Input';
+import BaseButton from '@/components/Button/Button';
 
 const data = [
   {
@@ -65,6 +66,10 @@ export function FeedScreen() {
     setInputValue(text);
   };
 
+  const onSubmit = () => {
+    setInputValue('');
+  };
+
   return (
     <SafeAreaView style={[Styles.container, Skins.dark]}>
       <Text style={[Styles.head, HeadSize.h4, TextColors.white]}>
@@ -72,11 +77,25 @@ export function FeedScreen() {
       </Text>
 
       <View style={Styles.feeds}>
-        <Input.Base
-          placeholder="성과 기록하기"
-          onChange={onChange}
-          value={inputValue}
-        />
+        <View style={Styles.form}>
+          <Input.Base
+            style={Flex.full}
+            placeholder="성과 기록하기"
+            onChange={onChange}
+            value={inputValue}
+          />
+          <BaseButton
+            onPress={onSubmit}
+            style={[
+              Flex.center,
+              Styles.formButton,
+              Skins.primary,
+              BorderRadius.soft,
+            ]}>
+            <Text style={TextColors.white}>추가하기</Text>
+          </BaseButton>
+        </View>
+
         <BaseList
           data={data}
           render={({item}) => (
@@ -98,6 +117,14 @@ const Styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  formButton: {
+    width: 80,
+    marginLeft: 12,
   },
   head: {
     margin: 12,

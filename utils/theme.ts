@@ -60,6 +60,20 @@ export const BorderRadius = StyleSheet.create({
   },
 });
 
+export const Flex = StyleSheet.create({
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flexShrink: {
+    flexShrink: 0,
+  },
+  full: {
+    flex: 1,
+  },
+});
+
 export const Borders = StyleSheet.create({
   thin: {
     borderWidth: 1,
