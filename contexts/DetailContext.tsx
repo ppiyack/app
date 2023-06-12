@@ -1,4 +1,5 @@
 import {IData} from '@/models/detail';
+
 import React, {
   Dispatch,
   PropsWithChildren,
@@ -15,11 +16,13 @@ interface IDetailState {
 
 interface IDetailReducerAction {
   type: DetailReducerTypes;
-  payload: Partial<IDetailState>;
+  payload?: Partial<IDetailState>;
 }
 
 export enum DetailReducerTypes {
   '조회하기' = '조회하기',
+  '수정하기' = '수정하기',
+  '초기화하기' = '초기화하기',
 }
 
 const initialState: IDetailState = {
@@ -39,7 +42,21 @@ const detailReducer = (state: IDetailState, action: IDetailReducerAction) => {
     case DetailReducerTypes.조회하기: {
       return {
         ...state,
-        data: action.payload.data ?? null,
+        data: action?.payload?.data ?? null,
+      };
+    }
+
+    case DetailReducerTypes.수정하기: {
+      return {
+        ...state,
+        data: action?.payload?.data ?? null,
+      };
+    }
+
+    case DetailReducerTypes.초기화하기: {
+      return {
+        ...state,
+        data: null,
       };
     }
 

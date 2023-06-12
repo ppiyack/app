@@ -1,5 +1,6 @@
-import {useDetailContext} from '@/contexts/DetailContext';
+import {DetailReducerTypes, useDetailContext} from '@/contexts/DetailContext';
 import {HeadSize, TextColors} from '@/utils/theme';
+import {useEffect} from 'react';
 import React, {
   SafeAreaView,
   ScrollView,
@@ -9,7 +10,13 @@ import React, {
 } from 'react-native';
 
 export function DetailsScreen() {
-  const {detail} = useDetailContext();
+  const {detail, dispatchDetail} = useDetailContext();
+
+  useEffect(() => {
+    return () => {
+      dispatchDetail({type: DetailReducerTypes.초기화하기});
+    };
+  }, [dispatchDetail]);
 
   return (
     <SafeAreaView style={Styles.container}>
