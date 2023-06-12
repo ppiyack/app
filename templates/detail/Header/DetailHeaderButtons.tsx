@@ -26,23 +26,31 @@ export default function DetailHeaderButtons() {
     dispatchDetail({type: DetailReducerTypes.수정시작하기});
   };
 
+  const onEditComplete = () => {
+    dispatchDetail({type: DetailReducerTypes.수정완료하기});
+  };
+
   const onDelete = () => {
     setFeeds(feeds.filter(v => v.id !== detail?.data?.id));
     navigation.navigate('Feed');
+  };
+
+  const onCancel = () => {
+    dispatchDetail({type: DetailReducerTypes.수정취소하기});
   };
 
   return detail?.editable ? (
     <View style={[Style.container]}>
       <BaseButton
         style={[Style.editButton, Flex.center, Skins.dark, BorderRadius.soft]}>
-        <Text style={[TextColors.white]} onPress={onEditStart}>
+        <Text style={[TextColors.white]} onPress={onEditComplete}>
           수정완료
         </Text>
       </BaseButton>
 
       <BaseButton
         style={[Style.editButton, Flex.center, Skins.white, BorderRadius.soft]}>
-        <Text style={[TextColors.dark]} onPress={onDelete}>
+        <Text style={[TextColors.dark]} onPress={onCancel}>
           수정취소
         </Text>
       </BaseButton>
