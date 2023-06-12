@@ -12,6 +12,7 @@ interface IDetailContextProviderProps extends PropsWithChildren {}
 
 interface IDetailState {
   data: IData | null;
+  editable: boolean;
 }
 
 interface IDetailReducerAction {
@@ -21,12 +22,14 @@ interface IDetailReducerAction {
 
 export enum DetailReducerTypes {
   '조회하기' = '조회하기',
-  '수정하기' = '수정하기',
+  '수정시작하기' = '수정시작하기',
+  '수정완료하기' = '수정완료하기',
   '초기화하기' = '초기화하기',
 }
 
 const initialState: IDetailState = {
   data: null,
+  editable: false,
 };
 
 const DetailContext = createContext<{
@@ -46,10 +49,18 @@ const detailReducer = (state: IDetailState, action: IDetailReducerAction) => {
       };
     }
 
-    case DetailReducerTypes.수정하기: {
+    case DetailReducerTypes.수정시작하기: {
+      return {
+        ...state,
+        editable: true,
+      };
+    }
+
+    case DetailReducerTypes.수정완료하기: {
       return {
         ...state,
         data: action?.payload?.data ?? null,
+        editable: false,
       };
     }
 
