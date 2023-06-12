@@ -1,3 +1,4 @@
+import {useDetailContext} from '@/contexts/DetailContext';
 import {HeadSize, TextColors} from '@/utils/theme';
 import React, {
   SafeAreaView,
@@ -8,15 +9,21 @@ import React, {
 } from 'react-native';
 
 export function DetailsScreen() {
+  const {detail} = useDetailContext();
+
   return (
     <SafeAreaView style={Styles.container}>
       <ScrollView>
         <View style={Styles.summary}>
           <Text style={[HeadSize.h5, Styles.title, TextColors.dark]}>
-            Title
+            {detail?.data?.title}
           </Text>
 
-          <Text style={[Styles.description]}>Description</Text>
+          <Text style={[Styles.description]}>
+            {detail?.data?.description
+              ? detail.data.description
+              : '설명이 없습니다.'}
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
