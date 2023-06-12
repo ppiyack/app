@@ -63,6 +63,11 @@ const detailReducer = (state: IDetailState, action: IDetailReducerAction) => {
       return {
         ...state,
         editable: true,
+        inputs: {
+          ...state.inputs,
+          title: state.data?.title ?? '',
+          description: state.data?.description ?? '',
+        },
       };
     }
 
@@ -77,9 +82,24 @@ const detailReducer = (state: IDetailState, action: IDetailReducerAction) => {
     }
 
     case DetailReducerTypes.수정완료하기: {
+      const nextData = state.data
+        ? {
+            data: {
+              ...state.data,
+              title: state.inputs.title,
+              description: state.inputs.description,
+            },
+          }
+        : {};
+
       return {
         ...state,
-        data: action?.payload?.data ?? null,
+        ...nextData,
+        inputs: {
+          ...state.inputs,
+          title: '',
+          description: '',
+        },
         editable: false,
       };
     }
@@ -87,6 +107,10 @@ const detailReducer = (state: IDetailState, action: IDetailReducerAction) => {
     case DetailReducerTypes.수정취소하기: {
       return {
         ...state,
+        inputs: {
+          title: '',
+          description: '',
+        },
         editable: false,
       };
     }
