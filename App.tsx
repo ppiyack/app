@@ -13,6 +13,9 @@ import {UserContextProvider} from './contexts/UserContext';
 import {DIContextProvider} from './contexts/DIContext';
 import {FeedScreen} from './screens/FeedScreen';
 import {DetailContextProvider} from './contexts/DetailContext';
+import BaseButton from './components/Button/Button';
+import {Text, View} from 'react-native';
+import DetailHeaderButtons from './templates/detail/Header/DetailHeaderButtons';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -42,7 +45,10 @@ function App() {
               <Stack.Screen
                 name="Details"
                 component={DetailsScreen}
-                options={{headerTitle: '상세 정보'}}
+                options={{
+                  headerTitle: '상세 정보',
+                  headerRight: () => <DetailHeaderButtons />,
+                }}
               />
             </Stack.Navigator>
           </NavigationContainer>
