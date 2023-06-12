@@ -12,6 +12,7 @@ import LoginScreen from './screens/LoginScreen';
 import {UserContextProvider} from './contexts/UserContext';
 import {DIContextProvider} from './contexts/DIContext';
 import {FeedScreen} from './screens/FeedScreen';
+import {DetailContextProvider} from './contexts/DetailContext';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,31 +20,33 @@ function App() {
   return (
     <DIContextProvider>
       <UserContextProvider>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen
-              name="Home"
-              component={TabNavigator}
-              options={{
-                headerShown: false,
-              }}
-            />
+        <DetailContextProvider>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login">
+              <Stack.Screen
+                name="Home"
+                component={TabNavigator}
+                options={{
+                  headerShown: false,
+                }}
+              />
 
-            <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
 
-            <Stack.Screen
-              name="Feed"
-              component={FeedScreen}
-              options={{headerTitle: '게시판'}}
-            />
+              <Stack.Screen
+                name="Feed"
+                component={FeedScreen}
+                options={{headerTitle: '게시판'}}
+              />
 
-            <Stack.Screen
-              name="Details"
-              component={DetailsScreen}
-              options={{headerTitle: '상세 정보'}}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+              <Stack.Screen
+                name="Details"
+                component={DetailsScreen}
+                options={{headerTitle: '상세 정보'}}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </DetailContextProvider>
       </UserContextProvider>
     </DIContextProvider>
   );

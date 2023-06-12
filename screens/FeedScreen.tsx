@@ -10,14 +10,13 @@ import {RootStackParamList} from './types';
 import {Input} from '@/components/Input';
 import BaseButton from '@/components/Button/Button';
 import {useAsyncStorage} from '@/hooks/useAsyncStorage';
-interface IData {
-  id: string;
-  title: string;
-  description: string;
-}
+import {IData} from '@/models/detail';
+import {DetailReducerTypes, useDetailContext} from '@/contexts/DetailContext';
 
 export function FeedScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const {dispatchDetail} = useDetailContext();
 
   const [feeds, setFeeds] = useAsyncStorage<IData[], IData[]>({
     key: 'feeds',
@@ -55,6 +54,7 @@ export function FeedScreen() {
             onChange={onChange}
             value={inputValue}
           />
+
           <BaseButton
             onPress={onSubmit}
             style={[
@@ -74,7 +74,13 @@ export function FeedScreen() {
               style={Styles.card}
               title={item.title}
               description={item.description}
-              onPress={() => onCardPress(item.id)}
+              onPress={() => {
+                onCardPress(item.id);
+                dispatchDetail({
+                  type: DetailReducerTypes.조회하기,
+                  payload: {data: item},
+                });
+              }}
             />
           )}
           onScrollEnd={() => {
