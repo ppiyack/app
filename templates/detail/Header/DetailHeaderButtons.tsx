@@ -39,6 +39,7 @@ export default function DetailHeaderButtons() {
           수정완료
         </Text>
       </BaseButton>
+
       <BaseButton
         style={[Style.editButton, Flex.center, Skins.white, BorderRadius.soft]}>
         <Text style={[TextColors.dark]} onPress={onDelete}>
