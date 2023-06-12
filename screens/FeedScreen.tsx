@@ -9,6 +9,12 @@ import uuid from 'react-native-uuid';
 import {RootStackParamList} from './types';
 import {Input} from '@/components/Input';
 import BaseButton from '@/components/Button/Button';
+import {useAsyncStorage} from '@/hooks/useAsyncStorage';
+interface IData {
+  id: string | number;
+  title: string;
+  description: string;
+}
 
 const data = [
   {
@@ -56,6 +62,10 @@ const data = [
 export function FeedScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  const [feeds, setFeeds] = useAsyncStorage<IData[], IData[]>({
+    key: 'feeds',
+    defaultValue: [],
+  });
   const [inputValue, setInputValue] = useState('');
 
   const onCardPress = (id: string) => {
@@ -67,6 +77,10 @@ export function FeedScreen() {
   };
 
   const onSubmit = () => {
+    setFeeds([
+      ...feeds,
+      {id: uuid.v4() as string, title: inputValue, description: ''},
+    ]);
     setInputValue('');
   };
 
