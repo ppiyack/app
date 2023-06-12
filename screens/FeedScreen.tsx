@@ -11,53 +11,10 @@ import {Input} from '@/components/Input';
 import BaseButton from '@/components/Button/Button';
 import {useAsyncStorage} from '@/hooks/useAsyncStorage';
 interface IData {
-  id: string | number;
+  id: string;
   title: string;
   description: string;
 }
-
-const data = [
-  {
-    id: uuid.v4() as string,
-    title: '타이틀1입니다.',
-    description: '설명1입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀2입니다.',
-    description: '설명2입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀1입니다.',
-    description: '설명1입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀2입니다.',
-    description: '설명2입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀1입니다.',
-    description: '설명1입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀2입니다.',
-    description: '설명2입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀1입니다.',
-    description: '설명1입니다.',
-  },
-  {
-    id: uuid.v4() as string,
-    title: '타이틀2입니다.',
-    description: '설명2입니다.',
-  },
-];
 
 export function FeedScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -110,8 +67,8 @@ export function FeedScreen() {
           </BaseButton>
         </View>
 
-        <BaseList
-          data={data}
+        <BaseList<IData>
+          data={feeds}
           render={({item}) => (
             <Card
               style={Styles.card}
@@ -120,6 +77,40 @@ export function FeedScreen() {
               onPress={() => onCardPress(item.id)}
             />
           )}
+          onScrollEnd={() => {
+            if (feeds.length >= 50) {
+              return;
+            }
+
+            setFeeds([
+              ...feeds,
+              {
+                id: uuid.v4() as string,
+                title: new Date() + 'DUMMY_DATA1',
+                description: '',
+              },
+              {
+                id: uuid.v4() as string,
+                title: new Date() + 'DUMMY_DATA2',
+                description: '',
+              },
+              {
+                id: uuid.v4() as string,
+                title: new Date() + 'DUMMY_DATA3',
+                description: '',
+              },
+              {
+                id: uuid.v4() as string,
+                title: new Date() + 'DUMMY_DATA4',
+                description: '',
+              },
+              {
+                id: uuid.v4() as string,
+                title: new Date() + 'DUMMY_DATA5',
+                description: '',
+              },
+            ]);
+          }}
         />
       </View>
     </SafeAreaView>
@@ -135,6 +126,7 @@ const Styles = StyleSheet.create({
   form: {
     display: 'flex',
     flexDirection: 'row',
+    marginBottom: 12,
   },
   formButton: {
     width: 80,

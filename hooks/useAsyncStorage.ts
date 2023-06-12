@@ -10,7 +10,7 @@ interface IUseAsyncStorage<V, DV = unknown> {
 export const useAsyncStorage = <V, DV = unknown>({
   key,
   defaultValue,
-}: IUseAsyncStorage<V, DV>): [V | DV, (value: V) => void] => {
+}: IUseAsyncStorage<V, DV>): [V | DV, (value: V) => void, () => void] => {
   const [value, setStorageValue] = useState<V | DV>(defaultValue);
 
   useEffect(() => {
@@ -33,5 +33,12 @@ export const useAsyncStorage = <V, DV = unknown>({
     }
   };
 
-  return [value, setValue];
+  const clearValue = () => {
+    AsyncStorage.removeItem(key);
+    if (defaultValue) {
+      AsyncStorage.setItem(key, JSON.stringify(defaultValue));
+    }
+  };
+
+  return [value, setValue, clearValue];
 };

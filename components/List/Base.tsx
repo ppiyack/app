@@ -16,7 +16,7 @@ export default function BaseList<Data extends AnonymousObjectWithId>({
   data,
   render,
   onScrollEnd,
-  scrollThreshold = 0.8,
+  scrollThreshold = 1,
 }: IList<Data>) {
   return (
     <FlatList
