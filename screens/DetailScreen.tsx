@@ -12,7 +12,6 @@ import React, {
 
 export function DetailsScreen() {
   const {detail, dispatchDetail} = useDetailContext();
-
   const onChangeTitle = (title: string) => {
     dispatchDetail({
       type: DetailReducerTypes.수정중,

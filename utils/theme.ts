@@ -31,6 +31,9 @@ export const Skins = StyleSheet.create({
   dark: {
     backgroundColor: '#111',
   },
+  darkWithOpacity: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
   white: {
     backgroundColor: '#fff',
   },

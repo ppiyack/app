@@ -1,4 +1,5 @@
 import BaseButton from '@/components/Button/Button';
+import {BaseModal} from '@/components/Modal/Default';
 import {DetailReducerTypes, useDetailContext} from '@/contexts/DetailContext';
 import {useAsyncStorage} from '@/hooks/useAsyncStorage';
 import {IData} from '@/models/detail';
@@ -9,7 +10,7 @@ import {Flex} from '@/utils/theme';
 import {Skins} from '@/utils/theme';
 import {useNavigation} from '@react-navigation/native';
 
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 export default function DetailHeaderButtons() {
@@ -27,7 +28,7 @@ export default function DetailHeaderButtons() {
   };
 
   const onEditComplete = () => {
-    dispatchDetail({type: DetailReducerTypes.수정완료하기});
+    setVisible(true);
   };
 
   const onDelete = () => {
@@ -39,37 +40,85 @@ export default function DetailHeaderButtons() {
     dispatchDetail({type: DetailReducerTypes.수정취소하기});
   };
 
-  return detail?.editable ? (
-    <View style={[Style.container]}>
-      <BaseButton
-        style={[Style.editButton, Flex.center, Skins.dark, BorderRadius.soft]}>
-        <Text style={[TextColors.white]} onPress={onEditComplete}>
-          수정완료
-        </Text>
-      </BaseButton>
+  const [visible, setVisible] = useState(false);
 
-      <BaseButton
-        style={[Style.editButton, Flex.center, Skins.white, BorderRadius.soft]}>
-        <Text style={[TextColors.dark]} onPress={onCancel}>
-          수정취소
-        </Text>
-      </BaseButton>
-    </View>
-  ) : (
-    <View style={[Style.container]}>
-      <BaseButton
-        style={[Style.editButton, Flex.center, Skins.dark, BorderRadius.soft]}>
-        <Text style={[TextColors.white]} onPress={onEditStart}>
-          수정하기
-        </Text>
-      </BaseButton>
-      <BaseButton
-        style={[Style.editButton, Flex.center, Skins.white, BorderRadius.soft]}>
-        <Text style={[TextColors.dark]} onPress={onDelete}>
-          삭제하기
-        </Text>
-      </BaseButton>
-    </View>
+  const onActionModal = () => {
+    dispatchDetail({type: DetailReducerTypes.수정완료하기});
+    onCloseModal();
+  };
+
+  const onCloseModal = () => {
+    setVisible(false);
+  };
+
+  const onCancelModal = () => {
+    onCloseModal();
+  };
+
+  return (
+    <>
+      <BaseModal
+        title="성과 수정"
+        description="성과를 수정하시겠어요?"
+        visible={visible}
+        onAction={onActionModal}
+        onClose={onCloseModal}
+        onCancel={onCancelModal}
+      />
+
+      {detail?.editable ? (
+        <View style={[Style.container]}>
+          <BaseButton
+            style={[
+              Style.editButton,
+              Flex.center,
+              Skins.dark,
+              BorderRadius.soft,
+            ]}>
+            <Text style={[TextColors.white]} onPress={onEditComplete}>
+              수정완료
+            </Text>
+          </BaseButton>
+
+          <BaseButton
+            style={[
+              Style.editButton,
+              Flex.center,
+              Skins.white,
+              BorderRadius.soft,
+            ]}>
+            <Text style={[TextColors.dark]} onPress={onCancel}>
+              수정취소
+            </Text>
+          </BaseButton>
+        </View>
+      ) : (
+        <View style={[Style.container]}>
+          <BaseButton
+            style={[
+              Style.editButton,
+              Flex.center,
+              Skins.dark,
+              BorderRadius.soft,
+            ]}>
+            <Text style={[TextColors.white]} onPress={onEditStart}>
+              수정하기
+            </Text>
+          </BaseButton>
+          <BaseButton
+            style={[
+              Style.editButton,
+              Flex.center,
+              Skins.white,
+              BorderRadius.soft,
+            ]}>
+            <Text style={[TextColors.dark]} onPress={onDelete}>
+              삭제하기
+            </Text>
+          </BaseButton>
+        </View>
+      )}
+    </>
   );
 }
 
