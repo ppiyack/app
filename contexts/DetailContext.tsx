@@ -43,10 +43,10 @@ const initialState: IDetailState = {
 };
 
 const DetailContext = createContext<{
-  detail: IDetailState | null;
+  detail: IDetailState;
   dispatchDetail: Dispatch<IDetailReducerAction>;
 }>({
-  detail: null,
+  detail: initialState,
   dispatchDetail: () => {},
 });
 

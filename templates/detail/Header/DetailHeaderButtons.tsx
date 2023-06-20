@@ -31,9 +31,8 @@ export default function DetailHeaderButtons() {
     setVisible(true);
   };
 
-  const onDelete = () => {
-    setFeeds(feeds.filter(v => v.id !== detail?.data?.id));
-    navigation.navigate('Feed');
+  const onDeleteButtonClick = () => {
+    setDeleteModalVisible(true);
   };
 
   const onCancel = () => {
@@ -41,9 +40,37 @@ export default function DetailHeaderButtons() {
   };
 
   const [visible, setVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
+  const onActionDeleteModal = () => {
+    setFeeds(feeds.filter(v => v.id !== detail?.data?.id));
+    navigation.navigate('Feed');
+    onCloseDeleteModal();
+  };
+
+  const onCloseDeleteModal = () => {
+    setDeleteModalVisible(false);
+  };
+
+  const onCancelDeleteModal = () => {
+    onCloseDeleteModal();
+  };
 
   const onActionModal = () => {
     dispatchDetail({type: DetailReducerTypes.수정완료하기});
+
+    setFeeds(
+      feeds.map(v => {
+        const nowDetail = detail?.data as IData;
+        return v.id === nowDetail?.id
+          ? {
+              ...nowDetail,
+              title: detail?.inputs?.title,
+              description: detail?.inputs?.description,
+            }
+          : nowDetail;
+      }),
+    );
     onCloseModal();
   };
 
@@ -64,6 +91,15 @@ export default function DetailHeaderButtons() {
         onAction={onActionModal}
         onClose={onCloseModal}
         onCancel={onCancelModal}
+      />
+
+      <BaseModal
+        title="성과 삭제"
+        description="성과를 삭제하시겠어요?"
+        visible={deleteModalVisible}
+        onAction={onActionDeleteModal}
+        onClose={onCloseDeleteModal}
+        onCancel={onCancelDeleteModal}
       />
 
       {detail?.editable ? (
@@ -112,7 +148,7 @@ export default function DetailHeaderButtons() {
               Skins.white,
               BorderRadius.soft,
             ]}>
-            <Text style={[TextColors.dark]} onPress={onDelete}>
+            <Text style={[TextColors.dark]} onPress={onDeleteButtonClick}>
               삭제하기
             </Text>
           </BaseButton>
